@@ -1,0 +1,377 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					}
+				],
+				"name": "Transfer",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "_balances",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "_transfer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "add",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_number",
+						"type": "uint256"
+					}
+				],
+				"name": "addNoFee",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_newNumber",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "addWithView",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_newNumber",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "arrayType",
+				"outputs": [],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_newOwner",
+						"type": "address"
+					}
+				],
+				"name": "changeOwner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "destructVariable",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_number",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "_bool",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256[3]",
+						"name": "_array",
+						"type": "uint256[3]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "fGlobal",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "fstorage",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "initStudent1",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "initStudent2",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "initStudent3",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "initStudent4",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "a",
+						"type": "uint256[]"
+					}
+				],
+				"name": "insertSort",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "minusCall",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "minusPayble",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "balance",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "returnMultiple",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256[3]",
+						"name": "",
+						"type": "uint256[3]"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "returnNamed",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_number",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "_bool",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256[3]",
+						"name": "_array",
+						"type": "uint256[3]"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"events": {
+				"Transfer(address,address,uint256)": {
+					"notice": "declare event as we can see, the event of Transfer has 3 variable, from/to and value.  'indexed' represent it will be save in EVM  topics of log for index.*"
+				}
+			},
+			"kind": "user",
+			"methods": {
+				"add()": {
+					"notice": "read and write on contract*"
+				},
+				"addNoFee(uint256)": {
+					"notice": "Pure cannot read or write,*"
+				},
+				"addWithView()": {
+					"notice": "view can read, but cannot write the variability on contract*"
+				},
+				"arrayType()": {
+					"notice": "reference Type array 1. fixed length 2. dynamic array*"
+				},
+				"destructVariable()": {
+					"notice": "Destructuring Assignment in this case, we use destracturing assignment to destract the variable all variable will be included by '()' each variable will be separate by ','*"
+				},
+				"fGlobal()": {
+					"notice": "scope in variable there are 3 scope in contract 1. state: saved in chain, state will be declare inside the contract but outside the function. high gas fee such as the thisUint  2. local:  saved inside the function, used in the progress of function. low gas fee. 3. global:  preserved keyword by solidity, can be used withour declaration. *"
+				},
+				"insertSort(uint256[])": {
+					"notice": "insert sort  test [2,5,3,1]*"
+				},
+				"minusCall()": {
+					"notice": "external visited by inside or outside on contract *"
+				},
+				"minusPayble()": {
+					"notice": "payable give money(eth) , special function that can pay money with eth*"
+				},
+				"returnMultiple()": {
+					"notice": "return and returns return would be used in the inside of function return would be used in the declare of function to dedicate the return of variable  BTW, we use uint256[3] to declare the quote variability and must be dec with memory. because of the [1,2,3] will be transfer to uint8, we need uint256(1) to transfer the array to uint256 *"
+				},
+				"returnNamed()": {
+					"notice": "named return in this case, we declare the returns variability in advanced,  so we donnot need declare return inside of the function, all we need to do is give the value to the variability. but you sill can use the return in this case if you want.*"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/divingIntoChain.sol": "testFunction"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/divingIntoChain.sol": {
+			"keccak256": "0x2949dec5275bb8d7b8f25b3bd71f79f36e8650263d33f58d9915ca0cefd28424",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ed6af79531da8b14e420dec0a4adba86c3511cdcfd04037a907591fae25f6e08",
+				"dweb:/ipfs/QmZUuZ3ua4JjxdRUoCFnKgFtp142VAuix55KdmzGiCZM1G"
+			]
+		}
+	},
+	"version": 1
+}

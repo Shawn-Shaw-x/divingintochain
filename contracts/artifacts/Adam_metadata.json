@@ -1,0 +1,73 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "mesage",
+						"type": "string"
+					}
+				],
+				"name": "Log",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "bar",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "foo",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/divingIntoChain.sol": "Adam"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/divingIntoChain.sol": {
+			"keccak256": "0x2949dec5275bb8d7b8f25b3bd71f79f36e8650263d33f58d9915ca0cefd28424",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ed6af79531da8b14e420dec0a4adba86c3511cdcfd04037a907591fae25f6e08",
+				"dweb:/ipfs/QmZUuZ3ua4JjxdRUoCFnKgFtp142VAuix55KdmzGiCZM1G"
+			]
+		}
+	},
+	"version": 1
+}

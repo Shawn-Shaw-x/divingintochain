@@ -1,0 +1,70 @@
+{
+	"compiler": {
+		"version": "0.8.21+commit.d9974bed"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "CallFailed",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "callETH",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"notice": "send ETH in solidity, there are three way to send ETH to another contact - call(): the most useful function to send ETH 1. usage: receiver.call{amount} 2. there is no gas limit in 'call()', receiver can do some complex logic in it. 3. if call() fail, it will not revert 4. returns of call() is (bool, bytes), bool means success or fail. - transfer(): 1. usage: receiver.transfer(amount) 2. the limit of gas in transfer() would be 2300, enough for send ETH, but receiver contract cannot do more complex logi in fallback() or receive() 3. if some fail occur in transfer(), revert will be run automatally. - send(): 1. usage: receiver.send(amount) 2. the limt of gas in send() would be 2300, enough for send ETH, but receiver's contract cannot do more complex logi in fallback() or receice() 3. if fail, revert will not be run. 4. the return of send() is bool, it means the result of send ETH.*",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/divingIntoChain.sol": "testSendETH"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/divingIntoChain.sol": {
+			"keccak256": "0xb8fb73b411be3843611aaeb6db887cb84c3884acac8529498f85ac7eb8c67980",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://54b7310d4612f8268e12945a3746082ae01491fb77b0203dec3e0bb14c58fc2a",
+				"dweb:/ipfs/QmeNNhoDopTFefSMRd55NWwwdG7m3PvJ1cjPE1XZpgZjTV"
+			]
+		}
+	},
+	"version": 1
+}

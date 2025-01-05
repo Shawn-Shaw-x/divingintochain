@@ -1,0 +1,99 @@
+{
+	"compiler": {
+		"version": "0.8.21+commit.d9974bed"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "payable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "demo",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "address",
+								"name": "addr",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "balance",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "value",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct DeployConstract.DemoResult",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "balance",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"demo()": {
+					"notice": "invoke this function means you are create a DeleteCOntract and send your value to it and destroy it. in the end, you can get back your ETH.*"
+				}
+			},
+			"notice": "according the propusal ,*",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/divingIntoChain.sol": "DeployConstract"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/divingIntoChain.sol": {
+			"keccak256": "0xb8fb73b411be3843611aaeb6db887cb84c3884acac8529498f85ac7eb8c67980",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://54b7310d4612f8268e12945a3746082ae01491fb77b0203dec3e0bb14c58fc2a",
+				"dweb:/ipfs/QmeNNhoDopTFefSMRd55NWwwdG7m3PvJ1cjPE1XZpgZjTV"
+			]
+		}
+	},
+	"version": 1
+}

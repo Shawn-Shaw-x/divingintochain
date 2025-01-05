@@ -1,0 +1,104 @@
+{
+	"compiler": {
+		"version": "0.8.21+commit.d9974bed"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "Sender",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "Value",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes",
+						"name": "Data",
+						"type": "bytes"
+					}
+				],
+				"name": "FallbackCalled",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					}
+				],
+				"name": "Received",
+				"type": "event"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "fallback"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"events": {
+				"FallbackCalled(address,uint256,bytes)": {
+					"notice": "fallback fallback() is a function that can be used to receive ETH and to do proxy contract - fallback() must be 'payable' and 'external'    *"
+				}
+			},
+			"kind": "user",
+			"methods": {},
+			"notice": "receive ETH receive() is a function that will be execute when  the contract has received ETH - this function must be 'payable' and 'external' *",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/divingIntoChain.sol": "ETHReceiver"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/divingIntoChain.sol": {
+			"keccak256": "0xb8fb73b411be3843611aaeb6db887cb84c3884acac8529498f85ac7eb8c67980",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://54b7310d4612f8268e12945a3746082ae01491fb77b0203dec3e0bb14c58fc2a",
+				"dweb:/ipfs/QmeNNhoDopTFefSMRd55NWwwdG7m3PvJ1cjPE1XZpgZjTV"
+			]
+		}
+	},
+	"version": 1
+}

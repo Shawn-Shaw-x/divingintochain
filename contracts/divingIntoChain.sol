@@ -581,4 +581,472 @@ contract testError{
         _owner[tokenId] = newOwner;
     }
 }
-  
+
+/**
+    receive ETH
+
+    receive() is a function that will be execute when  the contract has received ETH
+    - this function must be 'payable' and 'external' 
+    **/
+contract ETHReceiver{
+    // define an event
+    event Received(address sender, uint value);
+    // receive ETH and emit event
+    receive() external payable {
+        emit Received(msg.sender, msg.value);
+    }
+
+    /**
+    fallback
+        fallback() is a function that can be used to receive ETH and to do proxy contract
+        - fallback() must be 'payable' and 'external'    
+
+    **/
+    event FallbackCalled(address Sender, uint Value, bytes Data);
+    //fallback 
+    fallback() external payable{
+        emit FallbackCalled(msg.sender, msg.value, msg.data);
+    }
+
+    /**
+    the differences between receive() and fallback()
+            fallback() or receive()?
+                get ETH
+                    |
+                msg.data is empty？
+                    /  \
+                yes    no
+                /      \
+        receive()exist?   fallback()
+                / \
+            yes  no
+            /     \
+        receive()   fallback()
+
+
+
+        if you send ETH to contract, it will check the msg.data. if empty, receive() will be execute. otherwise, fallback will be execute.
+        also, non of receive() and fallback() exist in the contract, it will occur an error. 
+        **/
+} 
+
+/**
+    send ETH
+    in solidity, there are three way to send ETH to another contact
+    - call(): the most useful function to send ETH
+        1. usage: receiver.call{amount}
+        2. there is no gas limit in 'call()', receiver can do some complex logic in it.
+        3. if call() fail, it will not revert
+        4. returns of call() is (bool, bytes), bool means success or fail.
+
+    - transfer():
+        1. usage: receiver.transfer(amount)
+        2. the limit of gas in transfer() would be 2300, enough for send ETH, but receiver contract cannot do more complex logi in fallback() or receive()
+        3. if some fail occur in transfer(), revert will be run automatally.
+
+    - send():
+        1. usage: receiver.send(amount)
+        2. the limt of gas in send() would be 2300, enough for send ETH, but receiver's contract cannot do more complex logi in fallback() or receice()
+        3. if fail, revert will not be run.
+        4. the return of send() is bool, it means the result of send ETH.
+**/
+
+contract testSendETH{
+    error CallFailed(); // if call() fail, it will be throw
+    // call() to send ETH
+    function callETH(address payable _to, uint256 amount) external payable {
+        // catch the return of call(), if fai, revert transaction and return error
+        (bool success,) = _to.call{value: amount}("");
+        if(!success){
+            revert CallFailed();
+        }
+    }
+
+}
+
+// contract be invoked
+contract OtherContract{
+    uint256 private _x = 0; // state variable _x
+    event Log(uint amount, uint gas);
+
+
+    function getBalance() view public returns(uint){
+        return address(this).balance;
+    }
+
+    function setX(uint256 x) external payable{
+        _x = x;
+        // if sendETH, release event Log
+        if(msg.value > 0){
+            emit Log(msg.value, gasleft());
+        }
+    }
+
+    // read X
+    function getX() external view returns(uint x){
+        x = _x;
+    }
+}
+
+// contract call other contract
+contract CallContract{
+    // call OtherContract through contract address, 
+    function callSetX(address _Address, uint256 x) external{
+        OtherContract(_Address).setX(x);
+    }
+    // call OtherContract through contract name
+    // BTW the lower type of contract name is still address
+    function callGetX(OtherContract _Address) external view returns(uint x){
+        OtherContract oc = OtherContract(_Address);
+        x = oc.getX();
+    }
+    // same as upon
+    function callGetX2(address _Address) external view returns(uint x){
+        OtherContract oc = OtherContract(_Address);
+        x = oc.getX();
+    }
+
+    //  OtherContract is payable, we can use it to transfer ETH
+    // All we need to do is add 'payable' in CallContract
+
+    function setTransferETH(address otherContract, uint256 x) payable external{
+        OtherContract(otherContract).setX{value: msg.value}(x);
+    }
+}
+
+/**
+call() is low level function of address, it can be used to intereact with other contract.
+(bool,types) is it's returns
+    1. 'fallback()' and 'receive()' can be trigged by  call() when sedding ETH
+    2. invoked another contract by call in not recommand , 
+         because when you invoke another unsafe contract by 'call()',
+          you are taking the initiative 
+        - you should invoke another contract's function by invoking function after declaring varibale
+    3. we still can invoke another contract's function by 'call()' when we don't know other contract's source code or ABI.
+    4. contract'sAddress.call(bytes) is the rules. 'bytes' can be encoded by 'abi.encodeWithSignature()'
+        example: abi.encodeWithSignature("functionSignatureString", detailArgs);
+**/
+
+contract BeingCallContract{
+    uint256 private _x = 0; // state variable _x
+    fallback() external payable { }
+    event Log(uint amount, uint gas);
+
+
+   function getBalance() view public returns(uint) {
+        return address(this).balance;
+    }
+    function setX(uint256 x) external payable{
+        _x = x;
+        // if sendETH, release event Log
+        if(msg.value > 0){
+            emit Log(msg.value, gasleft());
+        }
+    }
+        // read X
+    function getX() external view returns(uint x){
+        x = _x;
+    }
+}
+contract DoingCallContract{
+    // define a Response event , get the success and data when calling 'call()'
+    event Response(bool success, bytes data);
+
+    // call getX() and you can transfer ETH
+    function callSetX(address  payable  _addr, uint256 x) public payable {
+        // call setX(), also can send ETH
+        // msg.value means amount of ETH
+        (bool success, bytes memory data) = _addr.call{value: msg.value}(
+            abi.encodeWithSignature("setX(uint256)", x)       
+        );
+        emit Response(success, data); // emit event
+    }
+
+    // call getX but you can't transfer ETH
+    function callGetX(address _addr) external returns (uint256){
+        // call getX, not payable ,so it cannot be transfered ETH
+        (bool success, bytes memory data) = _addr.call(
+            abi.encodeWithSignature("getX()")
+        );
+        emit Response(success, data);
+        return abi.decode(data, (uint256));
+    }
+
+    // call function do not exit 
+    // if we call a function not exit in BeingOtherContract, this call still can be success,
+    // because the fallback() in BeingOtherContract will be called.
+    function callNotExit(address _addr) external {
+        (bool success, bytes memory data) = _addr.call(
+            abi.encodeWithSignature("foo(uint256)")
+        );
+        emit Response(success, data);
+        
+    }
+}
+
+/**
+delegate call
+    delegatecall is same as call, which is the low level of address.
+    when user A call contract B, contract C's function will be invoked
+
+    normal call:
+    -----             -----------             -----------
+   |userA| --call--> | contractB |  --call-->| contractC |
+    -----             -----------             -----------
+                      contex: B                 contex: C
+                      msg.sender: A             msg.sender: B
+                      msg.value: A              msg.value: B
+
+    delegateCall:
+    -----             -----------                     -----------
+   |userA| --call--> | contractB |  --delegateCall-->| contractC |
+    -----             -----------                     -----------
+                      contex: B                         contex: B
+                      msg.sender: A                     msg.sender: A
+                      msg.value: A                      msg.value: A
+    
+    Same as call(), delegateCall can be used as 'targetAddress'.delegatecall(byteCodes);
+    bytecodes can be constructed as 'abi.encodeWithSignature('functionSignature',args)'
+    fuctionSignature can be constructed as 'functionName(uint256,address)' etc.
+
+    - different from call, delegatecall can define gas but cannot define ETH
+    - notes: delegatecall have some security problems.
+     when it is used, you need to ensure that current contract have the same variable structure as target constract
+     and target constract is a safety constract.
+
+     delegatecall mainly be used in below two scenerio
+     1. Proxy Contract:
+        seprate storage contract from logic contract.
+         we are going to save logic contract address and all variable in proxy contract,
+         and we save logic in logic contract.
+         when we are going to update, we just need to change the address in proxy contract.
+     2. EIP-2535 Diamonds:
+        Diamonds is a standard which can build a smart contract system that can extend module in production environment.
+
+**/
+
+// c to be invoked
+contract C {
+    uint public num;
+    address public sender;
+    function setVars(uint _num) public payable {
+        num = _num;
+        sender = msg.sender;
+    }
+}
+// B to invoke
+contract B{
+    // must be as same as C
+    uint public num;
+    address public sender;
+
+    // call will change the variable of C
+    function callSetVars(address _addr, uint _num) external payable{
+        // call setVars()
+        (bool success, bytes memory data) = _addr.call(
+            abi.encodeWithSignature("setVars(uint256)", _num)
+        );
+    }
+    // delegatecall will change the variable of B
+    function delegatecallSetVars(address _addr, uint _num) external payable{
+        // delegatecall setVars()
+        (bool success, bytes memory data) = _addr.delegatecall(
+            abi.encodeWithSignature("setVars(uint256)", _num)
+        );
+    }
+}
+
+/**
+create a new contract in a contract
+
+    there are two way to create a new contract 
+    1. create: new Contract{value: _value}(params)
+        Contract is name, x is address, if constractor is 'payable', 
+        it can transfer _value to this contract, params is the new contract params
+    2. create2: create2 provide a feature that the contract address can be predicted before deploy
+        Uniswap use 'create2' to create Pair rather than 'create'
+
+        how to calculate address?
+        - create: newAddress = hash(creatorAddress, nonce) 
+                    nocce: that address' transactions count
+        - create2: new Address = hash("0xFF", creatorAddress, salt, initCode)
+                    'OXFF': constant 
+                    salt: bytes32 value, defined by creator
+                    initcode: newContract's initCode
+
+        how to use create2?
+        - Contract x = new Contract{salt: _salt, value: _value}(params)
+
+        Why we need create2?
+        1. Exchange save the wallet address for user in advance
+        2. Make it certain,  we donnot need to run 'Factory.getPair(tokenA, tokenB)' to implement the cross contract invoking.
+           Because the pair in newContract is fixed. we can calculate the pair in Router by (tokenA, tokenB).
+**/
+
+/**
+simple uniswap
+1. UniswapV2Pair: coin pair contract, used to manage pair address/liquid/buy and sell
+2. UniswapV2Factory: factory contract, used to create new pair and manage pair address
+**/
+
+contract Pair{
+    address public factory; // factory contract address
+    address public token0; // pair1
+    address public token1; // pair2
+
+    constructor() payable {
+        factory = msg.sender;
+    }
+
+    // called once by the factory at time of deployment
+    function initialize(address _token0, address _token1) external{
+        require(msg.sender == factory, 'UniswapV2:FORBIDDEN');
+        token0 = _token0;
+        token1 = _token1;
+    }
+}
+contract PairFactory{
+    mapping(address => mapping(address => address)) public getPair; // looked Pair address by two coin address
+    address[] public allPairs; // save all Pair address
+
+    function createPair(address tokenA, address tokenB) external returns(address pairAddr){
+        // create a new contract
+        Pair pair = new Pair();
+        // invoke the initilize()
+        pair.initialize(tokenA, tokenB);
+        // update to address map
+        pairAddr = address(pair);
+        allPairs.push(pairAddr);
+        getPair[tokenA][tokenB] = pairAddr;
+        getPair[tokenB][tokenA] = pairAddr;
+    }
+}
+
+
+
+contract Create2Pair{
+    address public factory; // factory contract address
+    address public token0; // pair1
+    address public token1; // pair2
+
+    constructor() payable {
+        factory = msg.sender;
+    }
+
+    // called once by the factory at time of deployment
+    function initialize(address _token0, address _token1) external{
+        require(msg.sender == factory, 'UniswapV2:FORBIDDEN');
+        token0 = _token0;
+        token1 = _token1;
+    }
+}
+contract Create2PairFactory{
+    mapping(address => mapping(address => address)) public getPair; // looked Pair address by two coin address
+    address[] public allPairs; // save all Pair address
+
+    function create2Pair(address tokenA, address tokenB) external returns(address pairAddr){
+        require(tokenA != tokenB,'IDENTICAL_ADDRESSES'); // avoid confict
+        // use tokenA and tokenB to calculate salt
+        (address token0, address token1) = tokenA < tokenB ? (tokenA, tokenB) : (tokenB, tokenA); // sort by size
+        bytes32 salt = keccak256(abi.encodePacked(token0, token1));
+        // use create2 to deploy
+        Create2Pair pair = new Create2Pair{salt: salt}();
+        // invoke the initialize in new contract
+        pair.initialize(tokenA, tokenB);
+        // update address map
+        pairAddr = address(pair);
+        allPairs.push(pairAddr);
+        getPair[tokenA][tokenB] = pairAddr;
+        getPair[tokenB][tokenA] = pairAddr;
+    }
+
+    /**
+    calculate pair contract address in advance
+    **/
+    function calculateAddr(address tokenA, address tokenB) public view returns(address predictedAddress){
+        require(tokenA != tokenB,'IDENTICAL_ADDRESS'); // avoid same conflict
+        // cal the salt
+        (address token0, address token1) = tokenA < tokenB ? (tokenA, tokenB) : (tokenB, tokenA);// sort
+        bytes32 salt = keccak256(abi.encodePacked(token0, token1));
+
+        // cal the contract address
+        predictedAddress =  address(uint160(uint(keccak256(abi.encodePacked(
+            bytes1(0xff),
+            address(this),
+            salt,
+            keccak256(type(Create2Pair).creationCode)
+        )))));
+    }
+}
+// 0x2c44b726ADF1963cA47Af88B284C06f30380fC78
+// 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c
+
+
+/**
+delete contract
+    selfdestruct command can be used to delete contract, and transfer the rest ETH to special address.
+    - 'selfdestruct' can not be used in deployed contract
+    - It must be used in the same transaction, if you want to use the previous selfdestruct
+
+    How to use?
+    - selfdestruct(_addr)
+        _addr is used to receive the rest ETH.
+        _addr do no need receive() or fallback() to receive ETH.  
+
+    Problems:
+    1. set 'onlyOwner' in selfdestruct function would be best.
+    2. 'selfdestruct' that is used in your project maybe involves some safety and trust problems. So, be careful when you add it in your contract.
+**/
+
+/**
+Bfore Cancon update
+    It can finish the selfdestruct, but after the Cancon update, the only thing it can do is tranfering ETH.=
+**/
+contract DeleteContract{
+    uint public value =10;
+    constructor() payable {}
+
+    receive() external payable {}
+
+    function deleteContract() external {
+        // invoke 'selfdestruct' and destroy the contract, besides, send the rest ETH to msg.sender
+        selfdestruct(payable(msg.sender));
+    }
+    function getBalance() external view returns(uint balance){
+        balance = address(this).balance;
+    }
+}
+
+/**
+according the propusal ,
+**/
+contract DeployConstract {
+    struct DemoResult {
+        address addr;
+        uint balance;
+        uint value;
+    }
+    constructor() payable {}
+        function getBalance() external view returns(uint balance){
+        balance = address(this).balance;
+    }
+
+    /**
+    invoke this function means you are create a DeleteCOntract and send your value to it and destroy it.
+    in the end, you can get back your ETH.
+    **/
+    function demo() public payable returns (DemoResult memory){
+        DeleteContract del = new DeleteContract{value:msg.value}();
+        DemoResult memory res = DemoResult({
+            addr: address(del),
+            balance: del.getBalance(),
+            value: del.value()
+        });
+        del.deleteContract();
+        return res;
+    }
+}
+
+
+
+

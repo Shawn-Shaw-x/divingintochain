@@ -1,0 +1,86 @@
+{
+	"compiler": {
+		"version": "0.8.21+commit.d9974bed"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "num",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "sender",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_num",
+						"type": "uint256"
+					}
+				],
+				"name": "setVars",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"notice": "delegate call delegatecall is same as call, which is the low level of address. when user A call contract B, contract C's function will be invoked normal call: -----             -----------             ----------- |userA| --call--> | contractB |  --call-->| contractC | -----             -----------             ----------- contex: B                 contex: C msg.sender: A             msg.sender: B msg.value: A              msg.value: B delegateCall: -----             -----------                     ----------- |userA| --call--> | contractB |  --delegateCall-->| contractC | -----             -----------                     ----------- contex: B                         contex: B msg.sender: A                     msg.sender: A msg.value: A                      msg.value: A Same as call(), delegateCall can be used as 'targetAddress'.delegatecall(byteCodes); bytecodes can be constructed as 'abi.encodeWithSignature('functionSignature',args)' fuctionSignature can be constructed as 'functionName(uint256,address)' etc. - different from call, delegatecall can define gas but cannot define ETH - notes: delegatecall have some security problems. when it is used, you need to ensure that current contract have the same variable structure as target constract and target constract is a safety constract. delegatecall mainly be used in below two scenerio 1. Proxy Contract: seprate storage contract from logic contract. we are going to save logic contract address and all variable in proxy contract, and we save logic in logic contract. when we are going to update, we just need to change the address in proxy contract. 2. EIP-2535 Diamonds: Diamonds is a standard which can build a smart contract system that can extend module in production environment.*",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/divingIntoChain.sol": "C"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/divingIntoChain.sol": {
+			"keccak256": "0xb8fb73b411be3843611aaeb6db887cb84c3884acac8529498f85ac7eb8c67980",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://54b7310d4612f8268e12945a3746082ae01491fb77b0203dec3e0bb14c58fc2a",
+				"dweb:/ipfs/QmeNNhoDopTFefSMRd55NWwwdG7m3PvJ1cjPE1XZpgZjTV"
+			]
+		}
+	},
+	"version": 1
+}

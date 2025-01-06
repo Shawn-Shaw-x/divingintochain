@@ -1,0 +1,77 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "a",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "b",
+						"type": "uint256"
+					}
+				],
+				"name": "onlyEven",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"notice": "Solidity try-catch In Solidity, try-catch only can be used by 'external' function or in constractor. try externalContract.f() returns(returnType val){ // seccess run ... } catch { // fail run ... } externalContract.f() is other contract's function*",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/divingIntoChain.sol": "OnlyEven"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/divingIntoChain.sol": {
+			"keccak256": "0x897c7d6d7fb14b2bc554cf1e44335ed698bb13b036f66d5f3cc208fef098cf95",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d85cf0279e645dbce2b744082c8afe8b376e43ce3ec1b3491c42e90f787973ce",
+				"dweb:/ipfs/QmPX6tc1sGtbS9ujWT1mpdqY5VHHtEDgScqD6dBXPkHK1c"
+			]
+		}
+	},
+	"version": 1
+}

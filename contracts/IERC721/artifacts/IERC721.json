@@ -49,11 +49,12 @@
 		},
 		"gasEstimates": null,
 		"methodIdentifiers": {
-			"approval(address,uint256)": "75247a58",
+			"approve(address,uint256)": "095ea7b3",
 			"balanceOf(address)": "70a08231",
 			"getApproved(uint256)": "081812fc",
 			"isApprovedForAll(address,address)": "e985e9c5",
 			"ownerOf(uint256)": "6352211e",
+			"safeTransferFrom(address,address,uint256)": "42842e0e",
 			"safeTransferFrom(address,address,uint256,bytes)": "b88d4fde",
 			"setApprovalForAll(address,bool)": "a22cb465",
 			"supportsInterface(bytes4)": "01ffc9a7",
@@ -73,7 +74,7 @@
 				{
 					"indexed": true,
 					"internalType": "address",
-					"name": "aproved",
+					"name": "approved",
 					"type": "address"
 				},
 				{
@@ -149,7 +150,7 @@
 					"type": "uint256"
 				}
 			],
-			"name": "approval",
+			"name": "approve",
 			"outputs": [],
 			"stateMutability": "nonpayable",
 			"type": "function"
@@ -233,6 +234,29 @@
 				}
 			],
 			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "from",
+					"type": "address"
+				},
+				{
+					"internalType": "address",
+					"name": "to",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "tokenId",
+					"type": "uint256"
+				}
+			],
+			"name": "safeTransferFrom",
+			"outputs": [],
+			"stateMutability": "nonpayable",
 			"type": "function"
 		},
 		{

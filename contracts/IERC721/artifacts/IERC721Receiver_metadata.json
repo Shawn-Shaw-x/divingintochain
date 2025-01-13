@@ -48,13 +48,12 @@
 		"userdoc": {
 			"kind": "user",
 			"methods": {},
-			"notice": "!!! the NFT will into black hole if the function is not completed in the contract. ERC721 receiver interface, contract need to implement this interface to receive token safely.(revert)*",
 			"version": 1
 		}
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/IERC721/testIerc721.sol": "IERC721Receiver"
+			"contracts/IERC721/IERC721Receiver.sol": "IERC721Receiver"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -68,11 +67,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/IERC721/testIerc721.sol": {
-			"keccak256": "0x7514c85ffb577e730c2c6a1314f482092e7b600bfac6fd921762a43d727a1f70",
+		"contracts/IERC721/IERC721Receiver.sol": {
+			"keccak256": "0x8d773ce8a111a5eacca6113339e0677b6723ece54b17ed4386844abc230e51a5",
+			"license": "MIT",
 			"urls": [
-				"bzz-raw://1a83bc4144c01f97336eca88bafeb32df4fc77ed893549285cb8825db6f361e4",
-				"dweb:/ipfs/QmPNGEH3hX87Lgx6pwjM5iYXLtV1jKm7pPzRJE736UWUkE"
+				"bzz-raw://9aceaabbd3be854a568fe85c2bac2c03c8d950def4433cce2e2a5687b0165be5",
+				"dweb:/ipfs/QmR7pNX9UGbVFZp7w11RXWNcSi67uqMR7vCYeStHceyFaj"
 			]
 		}
 	},

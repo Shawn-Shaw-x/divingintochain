@@ -26,20 +26,24 @@
 			}
 		],
 		"devdoc": {
+			"details": "ERC165标准接口, 详见 https://eips.ethereum.org/EIPS/eip-165[EIP]. 合约可以声明支持的接口，供其他合约检查",
 			"kind": "dev",
-			"methods": {},
+			"methods": {
+				"supportsInterface(bytes4)": {
+					"details": "如果合约实现了查询的`interfaceId`，则返回true 规则详见：https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section]"
+				}
+			},
 			"version": 1
 		},
 		"userdoc": {
 			"kind": "user",
 			"methods": {},
-			"notice": "ERC 165 standard ERC165 only declare a  supportInterface() function, input interfaceId id, and return true or false;*",
 			"version": 1
 		}
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/IERC721/testIerc721.sol": "IERC165"
+			"contracts/IERC721/IERC165.sol": "IERC165"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -53,11 +57,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/IERC721/testIerc721.sol": {
-			"keccak256": "0x7514c85ffb577e730c2c6a1314f482092e7b600bfac6fd921762a43d727a1f70",
+		"contracts/IERC721/IERC165.sol": {
+			"keccak256": "0x8f1405053180e54a54ceef00410704135364bed7d84060e99f623dfb1e93e2dc",
+			"license": "MIT",
 			"urls": [
-				"bzz-raw://1a83bc4144c01f97336eca88bafeb32df4fc77ed893549285cb8825db6f361e4",
-				"dweb:/ipfs/QmPNGEH3hX87Lgx6pwjM5iYXLtV1jKm7pPzRJE736UWUkE"
+				"bzz-raw://1c50d54cfb8f0e89947fc4d92c33f6d52551bc45fb9119a0814b04a0e180eefe",
+				"dweb:/ipfs/QmRrjCtAzHybRruHLZRXYGqs5txvvomcHxiftp5PpW6aMy"
 			]
 		}
 	},

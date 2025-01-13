@@ -1,0 +1,136 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_tokenContract",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "Receiver",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "Amount",
+						"type": "uint256"
+					}
+				],
+				"name": "SendToken",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "amountAllowed",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "requestAddress",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "requestTokens",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "tokenContract",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/103.sol": "TokenFaucet"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/103.sol": {
+			"keccak256": "0x34837383138c105bb30b1bf7433d0490d4191cf6b8702c19fd849c52b1974ae2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1f1d87c3c0dfe8f59309bc2cb253c8361e35bbf78029e4b9be4730d616106e1c",
+				"dweb:/ipfs/QmVhyZL38Nay78sH3cwWXysrvRgqdXYsXcPKLWRmHftbkm"
+			]
+		},
+		"contracts/IERC20.sol": {
+			"keccak256": "0xb3d27435efb0e6cd726da76fabe92920b00c42e69b64da11e4d15c95052e3b65",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9a456a4488429631051734a5c933df2e087b617a20b8d16aa9924cb26ded5742",
+				"dweb:/ipfs/QmfDLQmRXPPiSiBNCZJpAFDiywEUfMf47Qugx7d25mcgfj"
+			]
+		}
+	},
+	"version": 1
+}

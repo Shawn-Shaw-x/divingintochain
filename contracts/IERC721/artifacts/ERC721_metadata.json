@@ -405,11 +405,11 @@
 	},
 	"sources": {
 		"contracts/IERC721/ERC721.sol": {
-			"keccak256": "0x4a61ab4904c7d5ffb0b3ba590b26b238fad41800bcdf9d871c56d4bf040ca365",
+			"keccak256": "0x2c65ed044ea6637b04317c7dcb4998e1d8cfec65c892ba5f3e20ea2009b818f7",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a89d4de302126e26f2a2c9cea2477f494d778deff727cc0d12a2db44c7331b50",
-				"dweb:/ipfs/QmcoFdUKv2hChEo1bwZLHHsNcSS7wMnUGTt8CCHFzyUzFL"
+				"bzz-raw://ddb0fee94d03a62e1c17d71473197833f9b3ad2a1b52308667b60197d8cbc97d",
+				"dweb:/ipfs/QmQuj5zHEZCHpjqTFDJDcvuNzx1oeXsn3SQDVkP26MeAsg"
 			]
 		},
 		"contracts/IERC721/IERC165.sol": {

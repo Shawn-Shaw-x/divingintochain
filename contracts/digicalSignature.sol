@@ -84,7 +84,7 @@ How it to signature?
 
 How to verify the message and signature?
     1. Recover the public key: recover the public key using ECDSA library.
-    2.Ccompare the contract public key == recovered public key.
+    2.Compare the contract public key == recovered public key.
 
     If equal, it means the message and signature are both valid.
 **/

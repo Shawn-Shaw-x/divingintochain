@@ -1,0 +1,46 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"details": "提供与地址相关的工具函数，包括判断一个地址是否为合约地址。",
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/IERC1155/Address.sol": "Address"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/IERC1155/Address.sol": {
+			"keccak256": "0xe32cc9cb04b1ebf90edd10cda3b6102665726c110fd805acf068ccf06086ddf3",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://29b33fc399751be9af8a0d75ad58f9cdd61f80c3919f67eba10bc54b2a055f10",
+				"dweb:/ipfs/QmTDLSVGMugTSLAAgYz3pq5YTgTggHk6XnYASAHq1bqMvh"
+			]
+		}
+	},
+	"version": 1
+}

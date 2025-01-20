@@ -1,0 +1,88 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_implementation",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "fallback"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newImplementation",
+						"type": "address"
+					}
+				],
+				"name": "upgrate",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "words",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"notice": "What is disavantages of simple upgradeable contract? In solidity, selector is the first 4 bytes of hash. bytes4(keccak(\"mint(address)\")) So, it is very easy to meet conflict. In simple upgradeable contract, proxy contract is different form logic contract. So, image that there is a function called \"a()\"  in logic contract. But there is a function called \"upgrade()\" in proxy contract. And if \"a()\" has the selector as same as the \"upgrade()\"; When the admin call \"a()\", the \"upgrade()\" will be called, In that case, logic proxy will be upgraded to a blackhole contract, it is very dangrous! How to fix the disavantages in simple upgradeable contract? answer: use the transparent upgrate contract What is the transparent upgrate contract? It is very simple: making all the function in logic can not be called by admin. What is the cost? More gas consume! Because the “require(msg.sender != admin);” in fallback()*",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/TransparentUpgradeableProxy.sol": "TransparentUpgradeableProxy"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/TransparentUpgradeableProxy.sol": {
+			"keccak256": "0xf514501765754791fb62e355cdc0772e125558d1b7bdb0c66a566624dbc10924",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://77c44e93943d5e4d68bfea86782690f1ad3cf6140e882bb057f1c15ae848b126",
+				"dweb:/ipfs/QmaXZCthyHddqzVoDKozH2eKTPBBsBDqpnQo4kXiTSvUNw"
+			]
+		}
+	},
+	"version": 1
+}

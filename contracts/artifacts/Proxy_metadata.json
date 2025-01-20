@@ -1,0 +1,75 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "implementation_",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "fallback"
+			},
+			{
+				"inputs": [],
+				"name": "implementation",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"notice": "What is proxy contract? We seperate the logic from the state bariable and put them into two different contract. What is the advantages of proxy contract? 1. Upgrateable: all we need to do is pointting the new logic contract  2. Gas saving: if we have the same logic in differnt contracts,  we can deploy one logic contract and use the proxy contract to point it delegateCall: -----             -----------                     ----------- |userA| --call--> | contractB |  --delegateCall-->| contractC | -----             -----------                     ----------- contex: B                         contex: B msg.sender: A                     msg.sender: A msg.value: A                      msg.value: A*",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/ProxyContract.sol": "Proxy"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/ProxyContract.sol": {
+			"keccak256": "0xc83d54da32617dc9a3d5fbda9fe9f991d733acc4599240246d06437e8723fe1d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://363a135e1adc8fb244bba66d30150dd16f86f6f4bf062f7acc53f70961970689",
+				"dweb:/ipfs/QmPaXkCrQKxdAQiik3Gbfjsp4CLEeqszZs17LtTcbSdFix"
+			]
+		}
+	},
+	"version": 1
+}
